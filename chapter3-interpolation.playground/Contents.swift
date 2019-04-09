@@ -1,5 +1,9 @@
 import Foundation
 
+class Interpolation {
+    
+}
+
 public struct LagrangePolynomialCalculator {
     var X: [Double] = []
     var Y: [Double] = []
@@ -72,28 +76,35 @@ public struct LagrangePolynomialCalculator {
         }
     }
     func function(_ arg: Double) -> Double {
-        return pow(x, 4)
+        return pow(arg, 4)
     }
     func calculateError(precision: Double) -> Double{
         var errorValues: [Double] = []
+        var argArr = [Double]()
         print("X.first \(X.first!)  X.last \(X.last!)")
         for step in stride(from: X.first!, through: X.last!, by: precision) {
+            argArr.append(step)
             errorValues.append(abs(function(step) - calculatePolynomial(for: step)))
         }
         guard let maxError = errorValues.max() else {
             print("Maximum error wasn't found")
             return 0
         }
+        if let indexAtMax = errorValues.firstIndex(of: maxError) {
+            let arg = argArr[indexAtMax]
+            print("Argument X: \(arg), and f(x)=\(function(arg))")
+        }
+        
         return maxError
     }
 }
 //
 var lagCalc = LagrangePolynomialCalculator(lowerBound: -10, upperBound: 10, degree: 4, x: 1.5, precision: 0.1)
-lagCalc.initialize(lBound: -10, uBound: 10, x: 1.5, precision: 0.1, degree: 4)
+lagCalc.initialize(lBound: -10, uBound: 10, x: 1.5, precision: 0.1, degree: 24)
 //lagCalc.printAllAbout()
 //let y = lagCalc.calculatePolynomial(for: 1.5)
 
 
 var chavebsky = lagrangeWithChebyshew()
-chavebsky.initialize(lBound: -10, uBound: 10, x: 1.5, precision: 0.1, degree: 4)
-
+chavebsky.initialize(lBound: -10, uBound: 10, x: 1.5, precision: 0.1, degree: 24)
+print(2+2)

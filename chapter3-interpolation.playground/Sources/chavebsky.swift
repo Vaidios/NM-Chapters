@@ -86,12 +86,18 @@ public struct lagrangeWithChebyshew {
     
     func calculateError() -> Double{
         var errorValues: [Double] = []
+        var argArr = [Double]()
         for step in stride(from: X.first!, to: X.last!, by: precision) {
+            argArr.append(step)
             errorValues.append(abs(function(step) - calculateLangrange(step: step)))
         }
         guard let maxError = errorValues.max() else {
             print("[ERROR] Maximum value wasn't found")
             return 0
+        }
+        if let indexAtMax = errorValues.firstIndex(of: maxError) {
+            let arg = argArr[indexAtMax]
+            print("Argument X: \(arg), and f(x)=\(function(arg))")
         }
         return maxError
     }
