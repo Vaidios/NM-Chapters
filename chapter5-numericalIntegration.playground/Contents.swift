@@ -24,18 +24,44 @@ class NumericalIntegration {
 }
 
 extension NumericalIntegration {
-    func calculateFor(n: Int, m: Int) {
-        switch n {
-        case 0:
-            <#code#>
-        default:
-            print("Invalid 'n'")
-        }
-    }
-    func leftRiemannSum(m: Int) {
+//    func calculateFor(n: Int, m: Int) -> Double? {
+//        switch n {
+//        case 0:
+//            return leftRiemannSum(m: m)
+//        default:
+//            print("Invalid 'n'")
+//            return nil
+//        }
+//        //return nil
+//    }
+    func leftRiemannSum(m: Int) -> (result: Double, error: Double) {
+        var sum: Double = 0
         let space = (interval.b - interval.a) / Double(m)
-        for _ in 0...m {
-            
+        for point in 0..<m {
+            sum = sum + function(arg: interval.a + Double(point) * space)
         }
+        let result = sum * space
+        let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
+        return (result, error)
+    }
+    func trapezoidal(m: Int) -> (result: Double, error: Double) {
+        var sum: Double = 0
+        let space = (interval.b - interval.a) / Double(m)
+        for point in 0...m {
+            sum = sum + function(arg: interval.a + Double(point) * space)
+        }
+        let result = (space / 2.0) * sum
+        let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
+        return (result, error)
+    }
+    func simpson(m: Int) -> (result: Double, error: Double) {
+        var sum: Double = 0
+        let space = (interval.b - interval.a) / Double(m + 1)
+        
     }
 }
+
+let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 4)
+let trapezoid = NumericalIntegration(interval: (0, 3)).trapezoidal(m: 4)
+print(riemann)
+print(trapezoid)
