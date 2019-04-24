@@ -7,7 +7,7 @@ public extension NumericalDiffrentiation {
             return function(x: x0)
         }
         if n < degree {
-            print("[FORWARD] n cannot be lower than degree")
+            print("[BACKWARD] n cannot be lower than degree")
             return nil
         }
         if degree > 3 {
@@ -32,7 +32,7 @@ public extension NumericalDiffrentiation {
             }
             Y = tempY
             guard let Diff = Y.first else {
-                print("[FORWARD] No value")
+                print("[BACKWARD] No value")
                 return nil
             }
             finalY.append(Diff)

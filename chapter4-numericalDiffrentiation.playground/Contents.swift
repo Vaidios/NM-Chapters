@@ -16,7 +16,7 @@ extension NumericalDiffrentiation {
         let directionTest1 = forwardDiffrence(degree: degree, x1: x1, n1: n1, h1: h1)!
         let directionTest2 = forwardDiffrence(degree: degree, x1: x1, n1: n1, h1: h1 + step)!
         let error1 = overallError(value: directionTest1)
-        let error2 = overallError(value: directionTest2)
+        //let error2 = overallError(value: directionTest2)
         var achievedAcc: Double = abs(error1)
         var currentStep = 0
         print("[ADJUST]Achieved accuracy \(achievedAcc), accuracy: \(accuracy)")
@@ -56,7 +56,7 @@ extension NumericalDiffrentiation {
 //        }
         //var achievedAcc2 = forwardDiffrence(degree: degree, x1: x1, n1: n1, h1: h1 - step)
         print("Achieve accuracy after iterations \(achievedAcc)")
-        print("Function derivative: \(forwardDiffrence(degree: degree, x1: x1, n1: n1, h1: h1))")
+        //print("Function derivative: \(forwardDiffrence(degree: degree, x1: x1, n1: n1, h1: h1))")
         return (h1, n1)
     }
     
@@ -136,7 +136,7 @@ public extension NumericalDiffrentiation {
 
 let diff = NumericalDiffrentiation(x0: 1, h: 0.001, n: 10)
 let adjustParameters = diff.adjustParameters(x1: 1, accuracy: 0.01, h1: 0.1, n1: 4, adjustable: .h)
-let resultFor = diff.forwardDiffrence(degree: 1)
+let resultFor = diff.forwardDiffrence(degree: 2)
 print("Adjusted h0: \(adjustParameters.0), n: \(adjustParameters.1)")
 let errorFor = diff.overallError(value: resultFor!)
 print("[FORWARD] is equal to \(resultFor!) and error is \(errorFor)")
