@@ -24,7 +24,18 @@ class NumericalIntegration {
 }
 
 extension NumericalIntegration {
-    func calculateFor(n: Int) {
-        
+    func calculateFor(n: Int, m: Int) {
+        switch n {
+        case 0:
+            <#code#>
+        default:
+            print("Invalid 'n'")
+        }
+    }
+    func leftRiemannSum(m: Int) {
+        let space = (interval.b - interval.a) / Double(m)
+        for _ in 0...m {
+            
+        }
     }
 }
