@@ -57,7 +57,7 @@ extension NumericalIntegration {
     func simpson(m: Int) -> (result: Double, error: Double) {
         var sum: Double = 0
         let space = (interval.b - interval.a) / Double(m + 1)
-        
+        //cośtam dalej trzeba zapisać
     }
 }
 
