@@ -58,6 +58,7 @@ extension NumericalIntegration {
         var sum: Double = 0
         let space = (interval.b - interval.a) / Double(m + 1)
         //cośtam dalej trzeba zapisać
+        //sory. kolejny pusty upload
     }
 }
 
