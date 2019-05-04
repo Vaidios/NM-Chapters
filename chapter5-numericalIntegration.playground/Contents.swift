@@ -56,15 +56,20 @@ extension NumericalIntegration {
     }
     func simpson(m: Int) -> (result: Double, error: Double) {
         var sum: Double = 0
-        let n = 1
-        let space = (interval.b - interval.a) / Double(n + 1)
+        let space = (interval.b - interval.a) / Double(m * 2)
+        for point in 0 ... m {
+            
+        }
         
-        
-        
+        let result = (1.0 / 3.0) * space * (function(arg: interval.a) + 4 * function(arg: interval.a + space) + function(arg: interval.b))
+        let error = abs(integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a) - result)
+        return (result, error)
     }
 }
 
-let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 4)
-let trapezoid = NumericalIntegration(interval: (0, 3)).trapezoidal(m: 4)
-print(riemann)
+let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 1)
+let trapezoid = NumericalIntegration(interval: (0, 3)).trapezoidal(m: 1)
+let simpson = NumericalIntegration(interval: (0, 3)).simpson(m: 1)
 print(trapezoid)
+print(riemann)
+print(simpson)
