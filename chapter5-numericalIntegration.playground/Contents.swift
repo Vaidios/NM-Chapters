@@ -57,8 +57,9 @@ extension NumericalIntegration {
     func simpson(m: Int) -> (result: Double, error: Double) {
         var sum: Double = 0
         let space = (interval.b - interval.a) / Double(m * 2)
-        for point in 0 ... m {
-            
+        for point in 1 ... m {
+            let i = 2 * point - 1
+            let interpolated = 
         }
         
         let result = (1.0 / 3.0) * space * (function(arg: interval.a) + 4 * function(arg: interval.a + space) + function(arg: interval.b))
