@@ -99,6 +99,11 @@ extension NumericalIntegration {
         let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
         return (result , error)
     }
+    func simpson2() {
+        let length = interval.b - interval.a
+        let step = length / 4
+        
+    }
 }
 let _ = NumericalIntegration(interval: (0, 3)).printRealValue()
 let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 1)
