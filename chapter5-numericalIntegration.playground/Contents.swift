@@ -58,9 +58,26 @@ extension NumericalIntegration {
         return (result, error)
     }
     func simpson(m: Int) -> (result: Double, error: Double) {
-        let space = (interval.b - interval.a) / 2.0
-        let result = (1.0 / 3.0) * space * (function(arg: interval.a) + 4 * function(arg: interval.a + space) + function(arg: interval.b))
-        let error =  (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
+        let length = interval.b - interval.a
+        let step = length / Double(2 * m)
+        var integral: Double = 0
+        var first = true
+        for i in 0 ... 2 * m {
+            let point = interval.a + Double(i) * step
+            if i == 0 || i == 2 * m {
+                integral = integral + function(arg: point)
+            } else {
+                if first {
+                    integral = integral + function(arg: point) * 4
+                    first = false
+                } else {
+                    integral = integral + function(arg: point) * 2
+                    first = true
+                }
+            }
+        }
+        let result = step * integral / 3.0
+        let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
         return (result, error)
     }
     func boole() -> (result: Double, error: Double) {
@@ -99,16 +116,6 @@ extension NumericalIntegration {
         let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
         return (result , error)
     }
-    func simpson2(m: Int) -> (Double, Double) {
-        let length = interval.b - interval.a
-        let step = length / Double(2 * m)
-    
-        for i in 0 ... 2 * m {
-            let point = interval.a + Double(i) * step
-            print("Simpson2 interval: \(point)")
-        }
-        return (0.0, 0.0)
-    }
 }
 let _ = NumericalIntegration(interval: (0, 3)).printRealValue()
 let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 1)
@@ -132,4 +139,6 @@ print("Chebyshew n: 4, m: 1")
 print(chebyshew41)
 print("Chebyshew n: 2, m: 2")
 print(chebyshew22)
-let simpson2 = NumericalIntegration(interval: (0, 3)).simpson2(m: 2)
+let simpson2 = NumericalIntegration(interval: (0, 3)).simpson(m: 2)
+
+print(simpson2)
