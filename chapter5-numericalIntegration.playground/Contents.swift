@@ -99,13 +99,15 @@ extension NumericalIntegration {
         let error = (integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a)) - result
         return (result , error)
     }
-    func simpson2() {
+    func simpson2(m: Int) -> (Double, Double) {
         let length = interval.b - interval.a
-        let step = length / 4
+        let step = length / Double(2 * m)
     
-        for step in 0 ..< 2 {
-            
+        for i in 0 ... 2 * m {
+            let point = interval.a + Double(i) * step
+            print("Simpson2 interval: \(point)")
         }
+        return (0.0, 0.0)
     }
 }
 let _ = NumericalIntegration(interval: (0, 3)).printRealValue()
@@ -130,3 +132,4 @@ print("Chebyshew n: 4, m: 1")
 print(chebyshew41)
 print("Chebyshew n: 2, m: 2")
 print(chebyshew22)
+let simpson2 = NumericalIntegration(interval: (0, 3)).simpson2(m: 2)
