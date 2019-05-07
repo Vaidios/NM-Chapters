@@ -102,7 +102,10 @@ extension NumericalIntegration {
     func simpson2() {
         let length = interval.b - interval.a
         let step = length / 4
-        
+    
+        for step in 0 ..< 2 {
+            
+        }
     }
 }
 let _ = NumericalIntegration(interval: (0, 3)).printRealValue()
