@@ -1,8 +1,6 @@
 import Cocoa
 import CoreFoundation
 
-var str = "Hello, playground"
-
 class NumericalIntegration {
     let interval: (a: Double, b: Double)
     
@@ -24,16 +22,6 @@ class NumericalIntegration {
 }
 
 extension NumericalIntegration {
-//    func calculateFor(n: Int, m: Int) -> Double? {
-//        switch n {
-//        case 0:
-//            return leftRiemannSum(m: m)
-//        default:
-//            print("Invalid 'n'")
-//            return nil
-//        }
-//        //return nil
-//    }
     func printRealValue() {
         print(integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a))
     }
@@ -102,7 +90,6 @@ extension NumericalIntegration {
         let length = interval.b - interval.a
         for i in 1 ... m {
             var integral = 0.0
-            //var X = [Double]()
             let c = interval.a + Double(i - 1) * (length / Double(m))
             let d = interval.a + Double(i) * length / Double(m)
             for i in 0 ..< n {
