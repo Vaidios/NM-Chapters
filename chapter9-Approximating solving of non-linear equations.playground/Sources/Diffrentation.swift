@@ -10,7 +10,7 @@ public class NumericalDiffrentiation {
         self.n = n
     }
     public func function(x: Double) -> Double {
-        return exp(x - 1.0) + pow(x, 2) - 2
+        return pow(x, 4) - 625
     }
     public func functionDiff(x: Double) -> Double {
         return -1 / pow(x, 2)
@@ -37,7 +37,7 @@ public extension NumericalDiffrentiation {
         var X: [Double] = []
         var Y: [Double] = []
         var finalY: [Double] = []
-        for x in 0..<n + 1 {
+        for x in 0 ..< n + 1 {
             let newX = x0 - Double(x) * h
             let funcX = function(x: newX)
             X.append(newX)
