@@ -134,9 +134,10 @@ public extension NumericalDiffrentiation {
 }
 
 
-let diff = NumericalDiffrentiation(x0: 1, h: 0.001, n: 10)
-let adjustParameters = diff.adjustParameters(x1: 1, accuracy: 0.01, h1: 0.1, n1: 4, adjustable: .h)
-let resultFor = diff.forwardDiffrence(degree: 2)
-print("Adjusted h0: \(adjustParameters.0), n: \(adjustParameters.1)")
-let errorFor = diff.overallError(value: resultFor!)
-print("[FORWARD] is equal to \(resultFor!) and error is \(errorFor)")
+let diff = NumericalDiffrentiation(x0: 1, h: 10, n: 2)
+//let adjustParameters = diff.adjustParameters(x1: 1, accuracy: 0.01, h1: 0.1, n1: 4, adjustable: .h)
+//let resultFor = diff.forwardDiffrence(degree: 1)
+let resultBack = diff.backwardDiffrence(degree: 1)
+//print("Adjusted h0: \(adjustParameters.0), n: \(adjustParameters.1)")
+let errorFor = diff.overallError(value: resultBack!)
+print("[FORWARD] is equal to \(resultBack!) and error is \(errorFor)")

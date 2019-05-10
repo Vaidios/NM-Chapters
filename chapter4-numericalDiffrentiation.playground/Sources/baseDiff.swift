@@ -10,10 +10,10 @@ public class NumericalDiffrentiation {
         self.n = n
     }
     public func function(x: Double) -> Double {
-        return 1/x
+        return pow(x, 4.0)
     }
     public func functionDiff(x: Double) -> Double {
-        return -1 / pow(x, 2)
+        return 4.0 * pow(x, 3.0)
     }
     public func overallError(value: Double) -> Double {
         return functionDiff(x: x0) - value

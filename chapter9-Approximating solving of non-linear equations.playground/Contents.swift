@@ -48,6 +48,11 @@ class NonLinearSolver {
         }
         //print(function(interval.0), NumericalDiffrentiation(x0: interval.0, h: 0.001, n: 4).backwardDiffrence(degree: 2)!)
     }
+    func polynomial(arg: Double) -> Double {
+        //[1, 7, -94, -328, 960]
+        return pow(arg, 4.0) + 7.0 * pow(arg, 3.0) + -94.0 * pow(arg, 2.0) + -328.0 * pow(arg, 1.0) + 960.0
+    }
+    
     func newton(accuracy: Double) {
         var i = 1
         var x1 = 0.0
@@ -71,17 +76,33 @@ class NonLinearSolver {
         //print(function(interval.1), NumericalDiffrentiation(x0: interval.1, h: 0.001, n: 4).backwardDiffrence(degree: 2)!)
         
     }
+    
     func bernoulli(n: Int, a: [Double], accuracy: Double) {
         if n + 1 != a.count {
             return
         }
         var k = 1
         var xk = 0.0
-        var yValues = [0.0]
-        while function(xk) > accuracy {
-            
+        var yValues = [Double]()
+        for _ in 0 ..< n {
+            yValues.append(2.0)
+        }
+        while abs(polynomial(arg: xk)) > accuracy {
+            var sum = 0.0
+            for (i, y) in yValues.enumerated() {
+                if i != yValues.count - 1 {
+                    sum = sum + y * a[i]
+                }
+            }
+            let yk = (-1.0 / a.last!) * sum
+            xk = yk / yValues.last!
+            yValues.removeFirst()
+            yValues.append(yk)
+            print("xk: \(xk), f(x): \(polynomial(arg: xk)), yValues: \(yValues)")
         }
     }
 }
-
+//commit
 let _ = NonLinearSolver(interval: (-10.0, -1.0)).printFirst(accuracy: 0.001)
+print("BERNOULLI")
+let _ = NonLinearSolver(interval: (-10.0, -1.0)).bernoulli(n: 4, a: [1, 7, -94, -328, 960], accuracy: 0.001)
