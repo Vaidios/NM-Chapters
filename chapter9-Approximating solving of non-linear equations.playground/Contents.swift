@@ -104,6 +104,7 @@ class NonLinearSolver {
 }
 //commit
 //commit
+//commit
 let _ = NonLinearSolver(interval: (-10.0, -1.0)).printFirst(accuracy: 0.001)
 print("BERNOULLI")
 let _ = NonLinearSolver(interval: (-10.0, -1.0)).bernoulli(n: 4, a: [1, 7, -94, -328, 960], accuracy: 0.001)
