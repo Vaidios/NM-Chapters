@@ -132,3 +132,5 @@ print("Chebyshew n: 2, m: 2")
 print(chebyshew22)
 print("Simpson composite m: 2")
 print(simpson2)
+
+NumericalIntegration(interval: (0, 3)).printRealValue()
