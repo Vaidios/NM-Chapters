@@ -65,6 +65,9 @@ extension NumericalDiffrentiation {
 
 
 public extension NumericalDiffrentiation {
+    func diffrentiate(function: () -> Double, degree: Int) {
+        
+    }
     func forwardDiffrence(degree: Int, x1: Double, n1: Int, h1: Double ) -> Double? {
         let x0 = x1
         let n = n1

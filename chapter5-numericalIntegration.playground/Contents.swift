@@ -19,12 +19,12 @@ class NumericalIntegration {
         let ret = pow(arg, 2)*cos(arg) + 4 * sin(arg) - arg * cos(arg) - 2 * sin(arg) - 3 * cos(arg)
         return ret
     }
-}
-
-extension NumericalIntegration {
     func printRealValue() {
         print(integratedFunction(arg: interval.b) - integratedFunction(arg: interval.a))
     }
+}
+
+extension NumericalIntegration {
     func leftRiemannSum(m: Int) -> (result: Double, error: Double) {
         var sum: Double = 0
         let space = (interval.b - interval.a) / Double(m)
@@ -104,6 +104,9 @@ extension NumericalIntegration {
         return (result , error)
     }
 }
+
+
+
 let _ = NumericalIntegration(interval: (0, 3)).printRealValue()
 let riemann = NumericalIntegration(interval: (0, 3)).leftRiemannSum(m: 1)
 let trapezoid = NumericalIntegration(interval: (0, 3)).trapezoidal(m: 1)
@@ -113,10 +116,10 @@ let chebyshew21 = NumericalIntegration(interval: (0, 3)).chebyshew(n: 2, m: 1)
 let chebyshew41 = NumericalIntegration(interval: (0, 3)).chebyshew(n: 4, m: 1)
 let chebyshew22 = NumericalIntegration(interval: (0, 3)).chebyshew(n: 2, m: 2)
 let simpson2 = NumericalIntegration(interval: (0, 3)).simpson(m: 2)
-print("Trapezoid")
-print(trapezoid)
 print("Riemann")
 print(riemann)
+print("Trapezoid")
+print(trapezoid)
 print("Simpson")
 print(simpson)
 print("Boole")
